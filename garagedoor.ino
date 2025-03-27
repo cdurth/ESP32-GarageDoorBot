@@ -96,9 +96,10 @@ DoorState getDoorState() {
   DoorState currentState = currentDoorState;
   
   if ((millis() - lastDebounceTime) > debounceDelay) {
-    if (reading == HIGH) {  // Switch not pressed - door open
+    // INVERTED LOGIC: LOW means door is open, HIGH means door is closed
+    if (reading == LOW) {  // Switch pressed - door is open
       currentState = DOOR_OPEN;
-    } else {               // Switch pressed - door closed
+    } else {              // Switch not pressed - door is closed
       currentState = DOOR_CLOSED;
     }
   }
